@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A17351820D22998004979C2 /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8A17351720D22998004979C2 /* SqueezeNet.mlmodel */; };
 		8A413B9120D2205F00A761EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A413B9020D2205F00A761EC /* AppDelegate.swift */; };
 		8A413B9320D2205F00A761EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A413B9220D2205F00A761EC /* ViewController.swift */; };
 		8A413B9620D2205F00A761EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A413B9420D2205F00A761EC /* Main.storyboard */; };
@@ -16,10 +15,10 @@
 		8A413BA620D221D500A761EC /* VideoCameraType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A413BA320D221D500A761EC /* VideoCameraType.swift */; };
 		8A413BA720D221D500A761EC /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A413BA420D221D500A761EC /* VideoCapture.swift */; };
 		8A413BA820D221D500A761EC /* AVCaptureDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A413BA520D221D500A761EC /* AVCaptureDevice+Extension.swift */; };
+		8A8DE5C920D6DEA200914B67 /* models in Resources */ = {isa = PBXBuildFile; fileRef = 8A8DE5C820D6DEA200914B67 /* models */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8A17351720D22998004979C2 /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
 		8A413B8D20D2205F00A761EC /* MLModelCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLModelCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A413B9020D2205F00A761EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A413B9220D2205F00A761EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +29,7 @@
 		8A413BA320D221D500A761EC /* VideoCameraType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCameraType.swift; sourceTree = "<group>"; };
 		8A413BA420D221D500A761EC /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		8A413BA520D221D500A761EC /* AVCaptureDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Extension.swift"; sourceTree = "<group>"; };
+		8A8DE5C820D6DEA200914B67 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		8A413B8420D2205F00A761EC = {
 			isa = PBXGroup;
 			children = (
-				8A413BAB20D2261A00A761EC /* models */,
+				8A8DE5C820D6DEA200914B67 /* models */,
 				8A413BA220D221D500A761EC /* VideoCapture */,
 				8A413B8F20D2205F00A761EC /* MLModelCamera */,
 				8A413B8E20D2205F00A761EC /* Products */,
@@ -82,14 +82,6 @@
 				8A413BA520D221D500A761EC /* AVCaptureDevice+Extension.swift */,
 			);
 			path = VideoCapture;
-			sourceTree = "<group>";
-		};
-		8A413BAB20D2261A00A761EC /* models */ = {
-			isa = PBXGroup;
-			children = (
-				8A17351720D22998004979C2 /* SqueezeNet.mlmodel */,
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +144,7 @@
 			files = (
 				8A413B9B20D2206100A761EC /* LaunchScreen.storyboard in Resources */,
 				8A413B9820D2206100A761EC /* Assets.xcassets in Resources */,
+				8A8DE5C920D6DEA200914B67 /* models in Resources */,
 				8A413B9620D2205F00A761EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,7 +159,6 @@
 				8A413BA720D221D500A761EC /* VideoCapture.swift in Sources */,
 				8A413B9320D2205F00A761EC /* ViewController.swift in Sources */,
 				8A413B9120D2205F00A761EC /* AppDelegate.swift in Sources */,
-				8A17351820D22998004979C2 /* SqueezeNet.mlmodel in Sources */,
 				8A413BA820D221D500A761EC /* AVCaptureDevice+Extension.swift in Sources */,
 				8A413BA620D221D500A761EC /* VideoCameraType.swift in Sources */,
 			);

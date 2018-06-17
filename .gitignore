@@ -6,6 +6,9 @@
 build/
 DerivedData/
 
+models/*
+!.gitkeep
+
 ## Various settings
 *.pbxuser
 !default.pbxuser

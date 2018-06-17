@@ -43,12 +43,13 @@ class ViewController: UIViewController {
             }
         }
         
-        let modelPaths = Bundle.main.paths(forResourcesOfType: "mlmodelc", inDirectory: nil)
+        let modelPaths = Bundle.main.paths(forResourcesOfType: "mlmodel", inDirectory: "models")
         
         modelUrls = []
         for modelPath in modelPaths {
             let url = URL(fileURLWithPath: modelPath)
-            modelUrls.append(url)
+            let compiledUrl = try! MLModel.compileModel(at: url)
+            modelUrls.append(compiledUrl)
         }
         
         selectModel(url: modelUrls.first!)
