@@ -38,7 +38,9 @@ class ViewController: UIViewController {
             if delay > frameInterval {
                 return
             }
-            self.performClassifier(imageBuffer: imageBuffer)
+            self.serialQueue.async {
+                self.performClassifier(imageBuffer: imageBuffer)
+            }
         }
         
         let modelPaths = Bundle.main.paths(forResourcesOfType: "mlmodelc", inDirectory: nil)
@@ -103,25 +105,22 @@ class ViewController: UIViewController {
     
     private func performClassifier(imageBuffer: CVPixelBuffer) {
         guard let model = selectedModel else { return }
-        self.serialQueue.async {
-            let handler = VNImageRequestHandler(cvPixelBuffer: imageBuffer)
-            
-            let request = VNCoreMLRequest(model: model, completionHandler: { (request, error) in
-                guard let results = request.results as? [VNClassificationObservation] else {
-                    return
-                }
-                self.processResults(results)
-            })
-            
-            request.preferBackgroundProcessing = true
-            
-            request.imageCropAndScaleOption = .scaleFit
-            
-            do {
-                try handler.perform([request])
-            } catch {
-                print("failed to perform")
+        let handler = VNImageRequestHandler(cvPixelBuffer: imageBuffer)
+        
+        let request = VNCoreMLRequest(model: model, completionHandler: { (request, error) in
+            guard let results = request.results as? [VNClassificationObservation] else {
+                return
             }
+            self.processResults(results)
+        })
+        
+        request.preferBackgroundProcessing = true
+        request.imageCropAndScaleOption = .scaleFit
+        
+        do {
+            try handler.perform([request])
+        } catch {
+            print("failed to perform")
         }
     }
     
