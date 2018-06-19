@@ -18,8 +18,9 @@ class ViewController: UIViewController {
     private let preferredFps: Int32 = 2
     
     private var modelUrls: [URL]!
-    private var selectedModel: VNCoreMLModel?
-    
+    private var selectedVNModel: VNCoreMLModel?
+    private var selectedModel: MLModel?
+
     @IBOutlet private weak var modelLabel: UILabel!
     @IBOutlet private weak var predictLabel: UILabel!
     @IBOutlet private weak var previewView: UIView!
@@ -94,9 +95,9 @@ class ViewController: UIViewController {
     }
     
     private func selectModel(url: URL) {
-        let model = try! MLModel(contentsOf: url)
+        selectedModel = try! MLModel(contentsOf: url)
         do {
-            selectedModel = try VNCoreMLModel(for: model)
+            selectedVNModel = try VNCoreMLModel(for: selectedModel!)
             modelLabel.text = url.modelName
         }
         catch {
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
     }
     
     private func performClassifier(imageBuffer: CVPixelBuffer) {
-        guard let model = selectedModel else { return }
+        guard let model = selectedVNModel else { return }
         let handler = VNImageRequestHandler(cvPixelBuffer: imageBuffer)
         
         let request = VNCoreMLRequest(model: model, completionHandler: { (request, error) in
@@ -142,6 +143,24 @@ class ViewController: UIViewController {
     
     @IBAction func modelBtnTapped(_ sender: UIButton) {
         showActionSheet()
+    }
+}
+
+extension ViewController: UIPopoverPresentationControllerDelegate {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popover" {
+            let vc = segue.destination
+            vc.modalPresentationStyle = UIModalPresentationStyle.popover
+            vc.popoverPresentationController!.delegate = self
+        }
+        
+        if let modelDescriptionVC = segue.destination as? ModelDescriptionViewController, let model = selectedModel {
+            modelDescriptionVC.modelDescription = model.modelDescription
+        }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
 
