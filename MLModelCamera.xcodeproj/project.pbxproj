@@ -119,6 +119,7 @@
 				TargetAttributes = {
 					8A413B8C20D2205F00A761EC = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -317,7 +318,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shu223.MLModelCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -335,7 +336,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shu223.MLModelCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
