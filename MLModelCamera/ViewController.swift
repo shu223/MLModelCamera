@@ -22,7 +22,8 @@ class ViewController: UIViewController {
     private var selectedModel: MLModel?
 
     @IBOutlet private weak var modelLabel: UILabel!
-    @IBOutlet private weak var predictLabel: UILabel!
+    @IBOutlet private weak var resultLabel: UILabel!
+    @IBOutlet private weak var othersLabel: UILabel!
     @IBOutlet private weak var previewView: UIView!
 
     override func viewDidLoad() {
@@ -127,15 +128,21 @@ class ViewController: UIViewController {
     }
     
     private func processResults(_ results: [VNClassificationObservation]) {
-        var str = ""
+        var firstResult = ""
+        var others = ""
         for i in 0...10 {
             guard i < results.count else { break }
             let result = results[i]
             let confidence = String(format: "%.2f", result.confidence * 100)
-            str += "\(result.identifier) \(confidence)\n"
+            if i==0 {
+                firstResult = "\(result.identifier) \(confidence)"
+            } else {
+                others += "\(result.identifier) \(confidence)\n"
+            }
         }
         DispatchQueue.main.async(execute: {
-            self.predictLabel.text = str
+            self.resultLabel.text = firstResult
+            self.othersLabel.text = others
         })
     }
 
