@@ -15,21 +15,24 @@ class ViewController: UIViewController {
     private var videoCapture: VideoCapture!
     private let serialQueue = DispatchQueue(label: "com.shu223.coremlplayground.serialqueue")
     
+    private let videoSize = CGSize(width: 1280, height: 720)
     private let preferredFps: Int32 = 2
     
     private var modelUrls: [URL]!
     private var selectedVNModel: VNCoreMLModel?
     private var selectedModel: MLModel?
 
+    @IBOutlet private weak var previewView: UIView!
     @IBOutlet private weak var modelLabel: UILabel!
+    @IBOutlet private weak var resultView: UIView!
     @IBOutlet private weak var resultLabel: UILabel!
     @IBOutlet private weak var othersLabel: UILabel!
-    @IBOutlet private weak var previewView: UIView!
+    @IBOutlet private weak var bbView: BoundingBoxView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let spec = VideoSpec(fps: preferredFps, size: CGSize(width: 1280, height: 720))
+        let spec = VideoSpec(fps: preferredFps, size: videoSize)
         let frameInterval = 1.0 / Double(preferredFps)
         
         videoCapture = VideoCapture(cameraType: .back,
@@ -40,8 +43,9 @@ class ViewController: UIViewController {
             if delay > frameInterval {
                 return
             }
+
             self.serialQueue.async {
-                self.performClassifier(imageBuffer: imageBuffer)
+                self.runModel(imageBuffer: imageBuffer)
             }
         }
         
@@ -67,6 +71,8 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         guard let videoCapture = videoCapture else {return}
         videoCapture.resizePreview()
+        // TODO: Should be dynamically determined
+        self.bbView.updateSize(for: CGSize(width: videoSize.height, height: videoSize.width))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,15 +112,16 @@ class ViewController: UIViewController {
         }
     }
     
-    private func performClassifier(imageBuffer: CVPixelBuffer) {
+    private func runModel(imageBuffer: CVPixelBuffer) {
         guard let model = selectedVNModel else { return }
         let handler = VNImageRequestHandler(cvPixelBuffer: imageBuffer)
         
         let request = VNCoreMLRequest(model: model, completionHandler: { (request, error) in
-            guard let results = request.results as? [VNClassificationObservation] else {
-                return
+            if let results = request.results as? [VNClassificationObservation] {
+                self.processClassificationObservations(results)
+            } else if #available(iOS 12.0, *), let results = request.results as? [VNRecognizedObjectObservation] {
+                self.processObjectDetectionObservations(results)
             }
-            self.processResults(results)
         })
         
         request.preferBackgroundProcessing = true
@@ -126,8 +133,19 @@ class ViewController: UIViewController {
             print("failed to perform")
         }
     }
-    
-    private func processResults(_ results: [VNClassificationObservation]) {
+
+    @available(iOS 12.0, *)
+    private func processObjectDetectionObservations(_ results: [VNRecognizedObjectObservation]) {
+        bbView.observations = results
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.resultView.isHidden = true
+            self.bbView.isHidden = false
+            self.bbView.setNeedsDisplay()
+        }
+    }
+
+    private func processClassificationObservations(_ results: [VNClassificationObservation]) {
         var firstResult = ""
         var others = ""
         for i in 0...10 {
@@ -141,6 +159,8 @@ class ViewController: UIViewController {
             }
         }
         DispatchQueue.main.async(execute: {
+            self.bbView.isHidden = true
+            self.resultView.isHidden = false
             self.resultLabel.text = firstResult
             self.othersLabel.text = others
         })
