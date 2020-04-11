@@ -1,8 +1,9 @@
 # MLModelCamera
 
-[Create ML](https://developer.apple.com/documentation/create_ml) enable us to train [Core ML](https://developer.apple.com/documentation/coreml) models just with Drag-and-Drop. Then, MLModelCamera enable to test the `.mlmodel` files as a real-time image classiffication app just with Drag-and-Drop.
+[Create ML](https://developer.apple.com/documentation/create_ml) enable us to train [Core ML](https://developer.apple.com/documentation/coreml) models just with Drag-and-Drop. Then, `MLModelCamera` enable to test the `.mlmodel` files as a real-time `Image Classiffication` or `Object Detection` app just with Drag-and-Drop.
 
 ![](READMEResources/figure.png)
+
 
 ## Usage
 
@@ -11,6 +12,14 @@
 That's it! You don't need to add the models manually to the project.
 
 After running the app on your iOS device, you can choose the model with the "Change" button.
+
+
+## Supporting Model Types
+
+- Image Classification
+- Object Detection
+
+![](READMEResources/MLModelCamera_.png)
 
 
 ## Requirements
@@ -36,18 +45,14 @@ After running the app on your iOS device, you can choose the model with the "Cha
 - https://www.kaggle.com/datasets
 
 
-## Limitations
-
-Currently, it only supports image classification models.
-
 ## Author
 
-**Shuichi Tsutsumi**
+**[Shuichi Tsutsumi](https://github.com/sponsors/shu223)**
 
 iOS programmer from Japan.
 
 - PAST WORKS:  [My Profile Summary](https://medium.com/@shu223/my-profile-summary-f14bfc1e7099#.vdh0i7clr)
 - PROFILES: [LinkedIn](https://www.linkedin.com/in/shuichi-tsutsumi-525b755b/)
-- BLOGS: [English](https://medium.com/@shu223/) / [Japanese](http://d.hatena.ne.jp/shu223/)
+- BLOGS: [English](https://medium.com/@shu223/) / [Japanese](http://shu223.hatenablog.com/)
 - CONTACTS: [Twitter](https://twitter.com/shu223) / [Facebook](https://www.facebook.com/shuichi.tsutsumi)
 
