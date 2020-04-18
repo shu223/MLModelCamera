@@ -72,13 +72,15 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtW-Pg-o1J">
                                 <rect key="frame" x="295" y="34" width="72" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3yt-1q-7ap"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="jHu-3C-oIf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Change"/>
+                                <state key="normal" title="Change">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="2"/>
@@ -88,6 +90,19 @@
                                     <action selector="modelBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gjd-u4-cxV"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MhF-Mt-Apm">
+                                <rect key="frame" x="8" y="90" width="359" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <segments>
+                                    <segment title="centerCrop"/>
+                                    <segment title="scaleFit"/>
+                                    <segment title="scaleFill"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="cropAndScaleOptionChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dFV-CB-jka"/>
+                                </connections>
+                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qt6-Q2-8HG">
                                 <rect key="frame" x="327" y="-5" width="40" height="40"/>
                                 <constraints>
@@ -104,7 +119,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MhF-Mt-Apm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="0nh-Er-Bea"/>
                             <constraint firstItem="JHJ-sK-nsg" firstAttribute="trailing" secondItem="qt6-Q2-8HG" secondAttribute="trailing" id="2fz-3B-Hba"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MhF-Mt-Apm" secondAttribute="trailing" constant="8" id="AaA-e1-Hmq"/>
                             <constraint firstItem="3qB-GU-IdA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BUn-Ks-K5E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jtW-Pg-o1J" secondAttribute="trailing" constant="8" id="BaH-tQ-KMl"/>
                             <constraint firstItem="kgo-Kf-x2U" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IHb-4O-Kb3"/>
@@ -112,6 +129,7 @@
                             <constraint firstItem="Iaz-Jj-rH2" firstAttribute="centerX" secondItem="JHJ-sK-nsg" secondAttribute="centerX" id="Kgq-Nw-NpE"/>
                             <constraint firstItem="Fg1-tb-RXL" firstAttribute="width" secondItem="kgo-Kf-x2U" secondAttribute="width" id="OFx-8K-C1G"/>
                             <constraint firstAttribute="bottom" secondItem="kgo-Kf-x2U" secondAttribute="bottom" id="OJl-sf-759"/>
+                            <constraint firstItem="MhF-Mt-Apm" firstAttribute="top" secondItem="jtW-Pg-o1J" secondAttribute="bottom" constant="16" id="Ufi-wZ-TiX"/>
                             <constraint firstItem="Fg1-tb-RXL" firstAttribute="centerY" secondItem="kgo-Kf-x2U" secondAttribute="centerY" id="Vjm-eP-jOG"/>
                             <constraint firstItem="jtW-Pg-o1J" firstAttribute="top" secondItem="JHJ-sK-nsg" secondAttribute="bottom" constant="4" id="YbI-Dh-eTj"/>
                             <constraint firstItem="jtW-Pg-o1J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="g7B-Cv-1V0"/>

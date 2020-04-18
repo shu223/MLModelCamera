@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     private var selectedVNModel: VNCoreMLModel?
     private var selectedModel: MLModel?
 
+    private var cropAndScaleOption: VNImageCropAndScaleOption = .scaleFit
+    
     @IBOutlet private weak var previewView: UIView!
     @IBOutlet private weak var modelLabel: UILabel!
     @IBOutlet private weak var resultView: UIView!
@@ -125,7 +127,7 @@ class ViewController: UIViewController {
         })
         
         request.preferBackgroundProcessing = true
-        request.imageCropAndScaleOption = .scaleFit
+        request.imageCropAndScaleOption = cropAndScaleOption
         
         do {
             try handler.perform([request])
@@ -170,6 +172,10 @@ class ViewController: UIViewController {
     
     @IBAction func modelBtnTapped(_ sender: UIButton) {
         showActionSheet()
+    }
+    
+    @IBAction func cropAndScaleOptionChanged(_ sender: UISegmentedControl) {
+        cropAndScaleOption = VNImageCropAndScaleOption(rawValue: UInt(sender.selectedSegmentIndex))!
     }
 }
 
