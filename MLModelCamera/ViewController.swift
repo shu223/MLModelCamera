@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var resultLabel: UILabel!
     @IBOutlet private weak var othersLabel: UILabel!
     @IBOutlet private weak var bbView: BoundingBoxView!
+    @IBOutlet weak var cropAndScaleOptionSelector: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,10 @@ class ViewController: UIViewController {
         }
         
         selectModel(url: modelUrls.first!)
+        
+        // scaleFill
+        cropAndScaleOptionSelector.selectedSegmentIndex = 2
+        updateCropAndScaleOption()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,6 +173,11 @@ class ViewController: UIViewController {
         })
     }
 
+    private func updateCropAndScaleOption() {
+        let selectedIndex = cropAndScaleOptionSelector.selectedSegmentIndex
+        cropAndScaleOption = VNImageCropAndScaleOption(rawValue: UInt(selectedIndex))!
+    }
+    
     // MARK: - Actions
     
     @IBAction func modelBtnTapped(_ sender: UIButton) {
@@ -175,7 +185,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func cropAndScaleOptionChanged(_ sender: UISegmentedControl) {
-        cropAndScaleOption = VNImageCropAndScaleOption(rawValue: UInt(sender.selectedSegmentIndex))!
+        updateCropAndScaleOption()
     }
 }
 

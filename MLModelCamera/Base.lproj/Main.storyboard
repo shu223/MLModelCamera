@@ -151,6 +151,7 @@
                     </view>
                     <connections>
                         <outlet property="bbView" destination="Fg1-tb-RXL" id="ACa-vU-Z1D"/>
+                        <outlet property="cropAndScaleOptionSelector" destination="MhF-Mt-Apm" id="uBv-5Q-vON"/>
                         <outlet property="modelLabel" destination="JHJ-sK-nsg" id="uep-F9-Pey"/>
                         <outlet property="othersLabel" destination="lS7-AD-GeQ" id="4AJ-2S-pug"/>
                         <outlet property="previewView" destination="kgo-Kf-x2U" id="5Yj-Oy-mF0"/>
