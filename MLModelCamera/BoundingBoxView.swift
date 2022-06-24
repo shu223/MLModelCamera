@@ -28,7 +28,12 @@ class BoundingBoxView: UIView {
         
         for i in 0..<observations.count {
             let observation = observations[i]
-            let color = UIColor(hue: CGFloat(i) / CGFloat(observations.count), saturation: 1, brightness: 1, alpha: 1)
+            var color = UIColor(hue: CGFloat(i) / CGFloat(observations.count), saturation: 1, brightness: 1, alpha: 1)
+            if #available(iOS 12.0, *), let recognizedObjectObservation = observation as? VNRecognizedObjectObservation {
+                let firstLabelHash = recognizedObjectObservation.labels.first?.identifier.hashValue ?? 0.hashValue
+                color = UIColor(hue: (CGFloat(firstLabelHash % 256) / 512.0) + 1.0, saturation: 1, brightness: 1, alpha: 1)
+            }
+
             let rect = drawBoundingBox(context: context, observation: observation, color: color)
             
             if #available(iOS 12.0, *), let recognizedObjectObservation = observation as? VNRecognizedObjectObservation {
