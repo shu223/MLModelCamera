@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,9 +74,9 @@
                                     <constraint firstAttribute="width" constant="5" id="aEG-tP-FbH"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtW-Pg-o1J">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtW-Pg-o1J">
                                 <rect key="frame" x="295" y="34" width="72" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3yt-1q-7ap"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="jHu-3C-oIf"/>
@@ -101,7 +102,7 @@
                                     <segment title="scaleFit"/>
                                     <segment title="scaleFill"/>
                                 </segments>
-                                <color key="selectedSegmentTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="selectedSegmentTintColor" systemColor="systemBlueColor"/>
                                 <connections>
                                     <action selector="cropAndScaleOptionChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dFV-CB-jka"/>
                                 </connections>
@@ -120,6 +121,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MhF-Mt-Apm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="0nh-Er-Bea"/>
@@ -147,7 +149,6 @@
                             <constraint firstItem="Fg1-tb-RXL" firstAttribute="centerX" secondItem="kgo-Kf-x2U" secondAttribute="centerX" id="wKg-SP-yK3"/>
                             <constraint firstItem="qt6-Q2-8HG" firstAttribute="centerY" secondItem="JHJ-sK-nsg" secondAttribute="centerY" id="xfW-p0-mOM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="bbView" destination="Fg1-tb-RXL" id="ACa-vU-Z1D"/>
@@ -179,13 +180,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="WV1-x4-7ni"/>
                         <constraints>
                             <constraint firstItem="3GW-a4-q1r" firstAttribute="top" secondItem="WV1-x4-7ni" secondAttribute="top" id="6vI-HV-XHF"/>
                             <constraint firstItem="3GW-a4-q1r" firstAttribute="leading" secondItem="WV1-x4-7ni" secondAttribute="leading" constant="16" id="G0A-ar-FOs"/>
                             <constraint firstItem="WV1-x4-7ni" firstAttribute="bottom" secondItem="3GW-a4-q1r" secondAttribute="bottom" constant="16" id="gef-IV-lJH"/>
                             <constraint firstItem="WV1-x4-7ni" firstAttribute="trailing" secondItem="3GW-a4-q1r" secondAttribute="trailing" constant="16" id="rLG-L9-MB4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="WV1-x4-7ni"/>
                     </view>
                     <connections>
                         <outlet property="textView" destination="3GW-a4-q1r" id="Tuc-Cm-GXb"/>
@@ -196,4 +197,9 @@
             <point key="canvasLocation" x="932" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
