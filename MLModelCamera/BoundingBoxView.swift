@@ -43,9 +43,9 @@ class BoundingBoxView: UIView {
     }
     
     private func drawBoundingBox(context: CGContext, observation: VNDetectedObjectObservation, color: UIColor) -> CGRect {
-        let convertedRect = VNImageRectForNormalizedRect(observation.boundingBox, Int(imageRect.width), Int(imageRect.height))
+        let convertedRect = VNImageRectForNormalizedRect(observation.boundingBox.flipped, Int(imageRect.width), Int(imageRect.height))
         let x = convertedRect.minX + imageRect.minX
-        let y = (imageRect.height - convertedRect.maxY) + imageRect.minY
+        let y = convertedRect.minY + imageRect.minY
         let rect = CGRect(origin: CGPoint(x: x, y: y), size: convertedRect.size)
         
         context.setStrokeColor(color.cgColor)
@@ -71,5 +71,13 @@ class BoundingBoxView: UIView {
                              width: label.frame.width,
                              height: label.frame.height)
         addSubview(label)
+    }
+}
+
+extension CGRect {
+    var flipped: CGRect {
+        return CGRect(x: origin.x,
+                      y: 1 - origin.y - height,
+                      width: width, height: height)
     }
 }
